@@ -82,7 +82,7 @@ penguins |>
   )
 ```
 
-![Penguin bill depth by flipper length and species](figures/penguins-regression-plot.png){#fig-penguins-regression}
+![Penguin bill depth by flipper length and species](../figures/penguins-regression-plot.png){#fig-penguins-regression}
 
 In @tbl-summary-stats you can see characteristics of our sample and in @fig-penguins-regression you can see our as flipper length increase, we estimate bill depth to also increase, for each species.
 
