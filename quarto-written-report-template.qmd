@@ -1,0 +1,96 @@
+---
+title: "Untitled"
+author: "Author Names Here"
+date: last-modified
+format: 
+  jasa-pdf:
+    keep-tex: true  
+    journal:
+      blinded: false
+execute: 
+  echo: false
+  messgae: false
+  warning: false
+abstract: |
+  This is where you can write your abstract. It should all be written in one paragraph and be less than 200 words.
+keywords:
+  - Just for fun
+  - You can include keywords
+  - But not necessary
+header-includes: |
+  \usepackage{xcolor}
+bibliography: references.bib 
+---
+
+```{r}
+library(tidyverse)
+```
+
+
+## Introduction
+
+This is where you can write our introduction.
+You can also do citations if you wish.
+Visual editor is very helpful, as opposed to Source editor, when adding citations.
+The next paragraph provides an examples of in text citations.
+
+A study we read examined the amount of bacteria and fungus found on clothing before and after being worn using summary statistics [@whitehead2023].
+Instead I could have said: @whitehead2023 studied bacteria and fungus found on clothing before and after being worn using summary statistics.
+
+The information for citations is in the references.bib file.
+You can use a citation management tool or simply find the article you want to cite on Google Scholar \> Click "cite" \> Click "BibTex", then copy and paste that citation into your references.bib file.
+
+## Methods
+
+You can add equations using math notation (latex).
+
+$$
+Microbial Levels_i = \beta_0 + \beta_1 Time Worn_i + \epsilon_i
+$$ {#eq-short}
+
+If you have a long equation you can split it across multiple lines and have each line align where you place the `&`.
+
+$$
+  \begin{split}
+    Microbial Levels_i &= \beta_0 + \beta_1 Time Worn_i\\
+    &+ \beta_2 I(Article Type_i = Shirt) + \beta_3 I(Article Type_i = Pants) + \epsilon_i
+  \end{split}
+$$ {#eq-long}
+
+You can then cross reference an equation like the @eq-short or @eq-long.
+
+## Results
+
+```{r}
+#| label: tbl-summary-stats
+#| tbl-cap: Sample summary
+
+penguins |> 
+  group_by(species) |> 
+  summarize(
+    mean(bill_dep, na.rm = TRUE), 
+    sd(bill_dep, na.rm = TRUE), 
+    n()
+  ) |> 
+  knitr::kable(
+    col.names = c(
+      "Species",
+      "Mean Bill length (mm)", 
+      "Standard Deviation Bill Length (mm)", 
+      "Number in Sample"
+    )
+  )
+```
+
+![Penguin bill depth by flipper length and species](figures/penguins-regression-plot.png){#fig-penguins-regression}
+
+In @tbl-summary-stats you can see characteristics of our sample and in @fig-penguins-regression you can see our as flipper length increase, we estimate bill depth to also increase, for each species.
+
+## Discussion
+
+
+
+
+References will automatically be generated at the end of the document. You can remove the references part of the yaml if you don't want to include references. The following newpage command puts the references on their own page
+
+\newpage
