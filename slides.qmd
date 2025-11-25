@@ -1,0 +1,62 @@
+---
+title: "Investigating penguin bill depth"
+subtitle: "Math 430 Team 8"
+author: "Catalina Medina, Federica Ricci, and Sakshi Agarwal"
+format: 
+  revealjs:
+    theme: dark
+execute:
+  echo: false
+  warning: false
+  message: false
+---
+
+```{r}
+library(tidyverse)
+```
+
+# Introduction
+
+Penguins a very cute so we should care.
+
+## Study design & methods
+
+-   Observational study using data from ...
+-   Fit linear regression model
+
+$$
+  \begin{split}
+    Microbial Levels_i &= \beta_0 + \beta_1 Time Worn_i\\
+    &+ \beta_2 I(Article Type_i = Shirt)\\
+    &+ \beta_3 I(Article Type_i = Pants) + \epsilon_i
+  \end{split}
+$$ {#eq-long}
+
+# Results
+
+## Our sample
+
+```{r}
+penguins |> 
+  group_by(species) |> 
+  summarize(
+    mean(bill_dep, na.rm = TRUE), 
+    sd(bill_dep, na.rm = TRUE), 
+    n()
+  ) |> 
+  knitr::kable(
+    col.names = c(
+      "Species",
+      "Mean Bill length (mm)", 
+      "Standard Deviation Bill Length (mm)", 
+      "Number in Sample"
+    )
+  )
+```
+
+## 
+
+![Penguin bill depth by flipper length and species](figures/penguins-regression-plot.png){#fig-penguins-regression}
+
+
+## Questions?
